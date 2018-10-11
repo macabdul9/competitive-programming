@@ -1,2 +1,2 @@
 # Competitive-Programming
-Competitive programming in CPP
+problem solving using cpp
