@@ -4,8 +4,9 @@ int reverse(int n, int r);
 int main(int argc, char const *argv[])
 {
 	/* code */
-
-	cout << reverse(4372, 0) <<endl;
+	int n;
+	cin>>n;
+	cout << reverse(n, 0) <<endl;
 	return 0;
 }
 int reverse(int n, int r){
