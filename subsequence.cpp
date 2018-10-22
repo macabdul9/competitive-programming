@@ -3,7 +3,7 @@
 using namespace std;
 
 /*
-Brute-force approach solution time complexity O(n(n+n)) = O(n^2)
+Brute-force approach solution which practicallt runs faster
 */
 void subseq1(string s){
 
@@ -29,6 +29,7 @@ void subseq1(string s){
 
 /*
   optimized solution
+  but for larger input upper one runs quicker than this
 */
 void subseq2(string exp, string ans, int n){
   if (n == exp.length()) {
@@ -44,7 +45,7 @@ int main(int argc, char const *argv[]) {
   /* code */
   string e, a;
   cin>>e;
-  subseq1(e);
-  // subseq2(e,a,0);
+  // subseq1(e);
+  subseq2(e,a,0);
   return 0;
 }
