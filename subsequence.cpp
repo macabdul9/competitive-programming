@@ -42,9 +42,6 @@ void subseq2(string exp, string ans, int n){
 }
 int main(int argc, char const *argv[]) {
   /* code */
-  // string s1,s2;
-  // cin>>s1;
-  // subseq(s1, s2, 0);
   string e, a;
   cin>>e;
   subseq1(e);
