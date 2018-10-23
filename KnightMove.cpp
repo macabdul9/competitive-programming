@@ -38,10 +38,7 @@ bool  getMove(int board[D][D], int d, int move_no, int currRow, int currCol){
     if(canPlace(board, d, nextRow, nextCol)){
       board[nextRow][nextCol] = move_no + 1;
       bool success = getMove(board, d, move_no + 1, nextRow, nextCol);
-      /* basically this is very curcial part of the sol
-        which means put knight onto a position go for the next upto n*n
-        if it doesn't give the sol means it's not the right move hence move back
-      */
+      
       if(success)return true;
       board[nextRow][nextCol] = 0;
 
