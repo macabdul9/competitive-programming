@@ -1,5 +1,5 @@
 /*
-  Source : Spoj
+
   Problem Description:
   A positive integer is called a palindrome if its representation
   in the decimal system is the same when read from left to right
@@ -17,11 +17,15 @@
   2222
 */
 //this sol will upto a limit
-#include <iostream>
+#include <bits/stdc++.h>
+#include <boost/multiprecision/cpp_int.hpp>
 #define endl "\n"
 
+// use int instead of cpp_int in case your compiler don't have boost
+using boost::multiprecision::cpp_int;
+
 using namespace std;
-long long reverse(long long n, long long r){
+cpp_int reverse(cpp_int n, cpp_int r){
   if(!n){
     return r;
   }
@@ -29,13 +33,13 @@ long long reverse(long long n, long long r){
 }
 int main(int argc, char const *argv[]) {
   int test;
-  long long num;
+  cpp_int num;
   cin >> test;
   while (test > 0) {
     /* code */
     bool b = false;
     cin>>num;
-    for(long long i = num + 1; !b; i++){
+    for(cpp_int i = num + 1; !b; i++){
       if(i == reverse(i, 0)){
         b = true;
         cout << i << endl;
