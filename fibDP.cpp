@@ -16,8 +16,8 @@ ll getFibTD(ll n, ll *dp){
     dp[n] = getFibTD(n - 1, dp) + getFibTD( n - 2, dp);
   return dp[n];
 }
-//down top approach
-ll getFibDT(ll n){
+//bottom up approach
+ll getFibBU(ll n){
   ll mem[n  + 1];
   mem[0] = 0;
   mem[1] = 1;
@@ -34,7 +34,7 @@ int main(int argc, char const *argv[]) {
     cin >>n;
     cout << getFibTD(n, dp);
     cout << endl;
-    cout << getFibDT(n);
+    cout << getFibBU(n);
   }
   return 0;
 }
