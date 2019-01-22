@@ -4,6 +4,11 @@
 #define MAX 1000001
 using namespace std;
 
+ll fibRec(ll n){
+  if(n < 2)
+    return n;
+  return fibRec(n - 1) + fibRec(n - 2);
+}
 //top down aprroach
 ll getFibTD(ll n, ll *dp){
   if(n < 2){
@@ -30,11 +35,13 @@ int main(int argc, char const *argv[]) {
   ll n;
   ll dp[MAX];
   memset(dp, -1, sizeof(dp));
-  while(true){
-    cin >>n;
-    cout << getFibTD(n, dp);
-    cout << endl;
-    cout << getFibBU(n);
-  }
+  // while(true){
+  //   cin >>n;
+  //   cout << getFibTD(n, dp);
+  //   cout << endl;
+  //   cout << getFibBU(n);
+  // }
+  cin>> n;
+  cout << getFibTD(n, dp);
   return 0;
 }

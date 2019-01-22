@@ -17,8 +17,9 @@ void getPallindromicPartition(string str, int start, int end){
     cout << str.substr(start, end) << " ";
     return;
   }
-  if(isPallindrome(str, start, end - 1)) {//end - 1 because end is length and we need last index which is le - 1
-    cout << str.substr(start, end) << " ";
+  string ans = str.substr(start, end);
+  if(isPallindrome(ans , 0, ans.length() - 1 )) {//end - 1 because end is length and we need last index which is le - 1
+    cout << ans << " ";
   }
   getPallindromicPartition(str, start, end - 1);
   getPallindromicPartition(str, end, str.length());
