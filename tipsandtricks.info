@@ -1,9 +1,11 @@
-#include <string>
-#include <algorithm>
-#include <iostream>
+// sort array
+sort(arr, arr + n)
 
-int main(){
+//sort string
+sort(str.begin(), str.end())
 
+
+/* string diff , intersection  and union */
     std::string string1 = "abdulll";
     std::string string2 = "lovelly";
     std::string string_difference, string_intersection, string_union;
@@ -20,5 +22,6 @@ int main(){
     std::set_union(string1.begin(), string1.end(), string2.begin(), string2.end(), std::back_inserter(string_union));
     std::cout << "string1 union string2: " << string_union << std::endl;
 
-    return 0;
-}
+// removal of duplicate char from stirng
+s.erase(std::unique(s.begin(), s.end()), s.end());
+
