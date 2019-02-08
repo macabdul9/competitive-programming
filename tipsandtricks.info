@@ -25,3 +25,6 @@ sort(str.begin(), str.end())
 // removal of duplicate char from stirng
 s.erase(std::unique(s.begin(), s.end()), s.end());
 
+
+//bool array intialization
+bool location_matrix[location_num][location_num] = { {false} };
