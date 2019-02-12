@@ -41,6 +41,19 @@ auto start = std::chrono::high_resolution_clock::now();
 auto finish = std::chrono::high_resolution_clock::now();
 
 now ge the diff
+
 chrono::duration<double> elapsed = finish - start
 //print the time
 cout << fixed << elapsed.count() << endl;
+
+
+
+
+
+
+// 2d vector initialization
+int location_num = 1000;
+std::vector<std::vector<bool> > location_matrix(location_num, std::vector<bool>(location_num, false));
+
+
+
