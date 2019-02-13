@@ -36,21 +36,22 @@ using namespace std;
 // in this prob i gotta find the pair of elements of two array whose sum is ie. x
 
 ll getpair(vl &v1, vl &v2, vector<vector<bool>> &marked, ll current_row, ll current_col, ll target){
-    // first of all create a 2D matrix of order size1 x size2
+
     if(current_row > v1.size() - 1 or  current_col < 0) return 0;
 
     if(v1[current_row] + v2[current_col] < target)
             return getpair(v1, v2, marked, current_row + 1, current_col, target);
     else if(v1[current_row] + v2[current_col] > target)
-            return getpair(v1, v2, marked, current_row, current_col + 1, target);
+            return getpair(v1, v2, marked, current_row, current_col - 1, target);
     else{
-        if(!marked[current_row][current_col]){
+        if(!marked[current_row][current_col]){ // if a shell is unvisited
             cout << v1[current_row] << " , " << v2[current_col] << endl;
             marked[current_row][current_col] = true;
+            return 1 + getpair(v1, v2, marked, current_row + 1, current_col, target);
+            return 1 + getpair(v1, v2, marked, current_row, current_col - 1, target);
+        }else{
+            return 0;
         }
-        return getpair(v1, v2, marked, current_row + 1, current_col, target);
-        return getpair(v1, v2, marked, current_row, current_col + 1, target);
-
     }
 }
 
@@ -67,9 +68,11 @@ int main(){
     srand(time(0));
     loop(i, 0, m){
         v1.push_back(rand() % 15);
+        // v1.push_back(1);
     }
     loop(i, 0, n){
         v2.push_back(rand() % 15);
+        // v2.push_back(1);
     }
     // sort both vectors
     sort(v1.begin(), v1.end());
@@ -82,17 +85,7 @@ int main(){
             cout << v2[i] << " ";
     cout << endl;
     vector<vector<bool> > marked(10, vector<bool>(10, false));
-    getpair(v1, v2, marked, 0, v2.size() - 1, target);
-
-
-
-
-
-
-
-
-
-
+    cout << "total pair " << getpair(v1, v2, marked, 0, v2.size() - 1, target);
 
 
     /*
