@@ -1,13 +1,10 @@
-/**
- * @author      : macab (macab@debian)
- * @file        : subset
- * @created     : Wednesday Feb 06, 2019 20:33:05 IST
- */
-
-
+/*
+ * @author    : macab (macab@debian)
+ * @file      : sumofsubset
+ * @created   : Saturday Feb 09, 2019 17:34:04 IST
+*/
 #include<bits/stdc++.h>
 #define endl 		         "\n"
-#define ll                    long long int
 #define loop(i,a,b)           for(int i=(int)a;i<(int)b;++i)
 #define rloop(i,a,b)          for(int i=(int)a;i<=(int)b;++i)
 #define loopl(i,a,b)          for(ll i=(ll)a;i<(ll)b;++i)
@@ -18,37 +15,46 @@
 #define MIN                   -1e9
 #define pll                   pair<ll,ll>
 #define pii                   pair<int,int>
+#define psi                   pair<string, int>
+#define pci                   pair<char, int>
 #define all(p)                p.begin(),p.end()
 #define max(x,y)              (x>y)?x:y
 #define min(x,y)              (x<y)?x:y
 #define vi                    vector<int>
-
+#define vs                    vector<string>
+#define si                    set<int>
+#define ss                    set<string>
+#define mii                   map<int, int>
+typedef long long int ll;
+typedef unsigned int uint;
 using namespace std;
 
-vi subset(vector<int> v, vector<int> aux, int itr){
-    if(itr >= v.size())return aux;
-    int i, b;
+int sumofsubset(vi v, vi aux, int itr, int k, int count){
+    if(itr == v.size())
+        return count;
+    int b, i;
     b = aux.size();
-    //cout << b << endl;
     loop(i, 0, b){
+        if(aux[i] + v[itr] == k)
+            count++;
         aux.push_back(aux[i] + v[itr]);
     }
-    return subset(v, aux, itr  + 1);
+    return sumofsubset(v, aux, itr + 1, k, count);
 }
 
+// Given an array find all subsets of A which sum to K
 
 int main(){
-    vector<int> v;
-    vector<int> aux;
+    /*code goes here */
+    vi v, aux;
+    int n, k, i, tmp;
+    cin >> n >> k;
+    loop(i, 0, n){
+            cin >> tmp;
+            v.push_back(tmp);
+    }
     aux.push_back(0);
-    int i;
-    loop(i, 1, 5)
-        v.push_back(i);
-
-    aux = subset(v, aux, 0);
-    for(auto x : aux)
-        cout << x << " ";
-
-	return 0;
+    cout << sumofsubset(v, aux, 0, k, 0);
+    return 0;
 }
 
