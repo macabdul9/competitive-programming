@@ -33,11 +33,10 @@ typedef long long int ll;
 typedef unsigned int uint;
 using namespace std;
 
-// in this prob i gotta find the pair of elements of two array whose sum is ie. x
-int total_pair = 0;
-void getpair(vl &v1, vl &v2, vector<vector<bool>> &marked, ll current_row, ll current_col, ll target){
+// in this prob i gotta find the pair of elements of two array whose sum is any number k.
+ll getpair(vl &v1, vl &v2, vector<vector<bool>> &marked, ll current_row, ll current_col, ll target){
 
-    if(current_row > v1.size() - 1 or  current_col < 0) return;
+    if(current_row > v1.size() - 1 or  current_col < 0) return 0;
 
     if(v1[current_row] + v2[current_col] < target)// if current cell < target then increase the row because this will have higher value than upper
             getpair(v1, v2, marked, current_row + 1, current_col, target);
@@ -45,13 +44,11 @@ void getpair(vl &v1, vl &v2, vector<vector<bool>> &marked, ll current_row, ll cu
             getpair(v1, v2, marked, current_row, current_col - 1, target);
     else{
         if(!marked[current_row][current_col]){ // if a cell is unvisited and == target then move to the both direction
-            ++total_pair;
             cout << "("<< v1[current_row] << ", " << v2[current_col]<<") ";
             marked[current_row][current_col] = true;
-            getpair(v1, v2, marked, current_row + 1 , current_col, target);
-            getpair(v1, v2, marked, current_row , current_col -1 , target);
+            return 1 + getpair(v1, v2, marked, current_row + 1 , current_col, target) + getpair(v1, v2, marked, current_row , current_col -1 , target);
         }else{ // if cell is visited return back
-            return;
+            return 0;
         }
     }
 }
@@ -88,9 +85,7 @@ int main(){
             cout << v2[i] << " ";
     cout << endl;
     vector<vector<bool> > marked(m, vector<bool>(n, false));
-    getpair(v1, v2, marked, 0, v2.size() - 1, target);
-    cout <<"\ntotal pairs = " << total_pair << endl;
-
+    cout << "\ntotal pair = " << getpair(v1, v2, marked, 0, v2.size() - 1, target) << endl;
     /*
      * print the vector to check the initialization
     for(int i = 0; i < 10; i ++){
