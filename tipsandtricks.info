@@ -55,5 +55,7 @@ cout << fixed << elapsed.count() << endl;
 int location_num = 1000;
 std::vector<std::vector<bool> > location_matrix(location_num, std::vector<bool>(location_num, false));
 
-
+// trick to convert char to string
+char c = 'a';
+string s = &c;
 
