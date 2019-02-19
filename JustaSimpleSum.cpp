@@ -1,7 +1,7 @@
 /*
  * @author    : macab (macab@debian)
- * @file      : sumofsubset
- * @created   : Saturday Feb 09, 2019 17:34:04 IST
+ * @file      : JustaSimpleSum
+ * @created   : Tuesday Feb 19, 2019 04:31:43 IST
 */
 #include<bits/stdc++.h>
 #define endl 		         "\n"
@@ -25,39 +25,38 @@
 #define si                    set<int>
 #define ss                    set<string>
 #define mii                   map<int, int>
+#define msi                   map<string, int>
+#define umii                  unordered_map<int, int>
+#define umsi                  unordered_map<string, int>
 typedef long long int ll;
+typedef unsigned long long int ull;
 typedef unsigned int uint;
 using namespace std;
 
-int sumofsubset(vi v, vi aux, int itr, int B, int C, int count){
-    if(itr == v.size())
-        return count;
-    int b, i;
-    b = aux.size();
-    loop(i, 0, b){
-        if((aux[i] + v[itr]) <= C and (aux[i] + v[itr]) >= B )
-            count++;
-        aux.push_back(v[itr]);f
-        aux.push_back(aux[i] + v[itr]);
-        
-    }
-    return sumofsubset(v, aux, itr + 1, B, C, count);
+ull expmod(ull n, ull p, ull m) {
+   if (p == 0) return 1;
+   int nm = n % m;
+   ull r = expmod(nm, p / 2, m);
+   r = (r * r) % m;
+   if (p % 2 == 0) return r;
+   return (r * nm) % m;
 }
 
-// Given an array find all subsets of A which sum to K
-
 int main(){
-    /*code goes here */
-    vi v, aux;
-    int n, k, i, tmp;
-    cin >> n;
-    loop(i, 0, n){
-            cin >> tmp;
-            v.push_back(tmp);
+    /*code goes here*/
+    ios::sync_with_stdio(false);
+    int t;
+    cin >> t;
+    ull n, m, sum, i;
+    while( t-- > 0){
+        cin >> n >> m;
+        sum = 0;
+        for(i = 1 ; i <= n; i ++){
+            sum = (sum + expmod(i, i, m))%m;
+        }
+        cout << sum << endl;
     }
 
-    aux.push_back(v[0]);
-    cout << sumofsubset(v, aux, 1, 6, 8, 0) << endl;
     return 0;
 }
 
