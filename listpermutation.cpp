@@ -33,21 +33,25 @@ typedef unsigned int uint;
 using namespace std;
 
 int total = 0;
+
 void printvector(vi &vect){
     for(auto &x : vect)
             cout << x << " ";
     cout << endl;
-    ++total;
 }
-void listpermutation(vi vect, int itr){
-        vi aux = vect;
+
+void listpermutation(vi &vect, int itr){
+        //vi aux = vect;
         if(itr == vect.size() - 1){
-            printvector(aux);
+            printvector(vect);
+            ++total;
             return;
         }
         loop(i, itr, vect.size()){
-            swap(aux[i], aux[itr]);
-            listpermutation(aux, itr + 1);
+            swap(vect[i], vect[itr]);
+            listpermutation(vect, itr + 1);
+            // since a vector is mutable hence we gotta preserve the initial state of the list so reverse the last fucking swap
+            swap(vect[i], vect[itr]);
         }
 
 }
@@ -56,8 +60,8 @@ int main(){
     /*code goes here*/
     srand(time(0));
     vi vect;
-
-    loop(i, 1, 11){
+    int n = 4;
+    loop(i, 1, n){
             //vect.emplace_back(rand() % 10);
             vect.emplace_back(i);
     }
@@ -69,6 +73,7 @@ int main(){
     */
     listpermutation(vect, 0);
     cout << "total = " << total << endl;
+
 
     return 0;
 }
