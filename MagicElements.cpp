@@ -35,15 +35,18 @@ using namespace std;
 /*
  * source : https://www.codechef.com/problems/ZOZ
  * */
-ull bsearch(vector<ull> vect, ull current,ull sum, ull k){
-    if(current < 0 or current > vect.size() - 1) return 0;
-    
+ll lsearch(vector<ll> &vect, ll sum, ll k, ll current){
+    if(vect[current] + k <= sum - vect[current] or current < 0)
+            return 0;
+    else
+            return 1 + lsearch(vect, sum, k, current - 1);
+
 }
 
 int main(){
     /*code goes here*/
-    ull t, n , k, tmp;
-    vector<ull> vect;
+    ll t, n , k, tmp;
+    vector<ll> vect;
     cin >> t;
     while(t-- > 0){
         cin >> n >> k;
@@ -52,7 +55,8 @@ int main(){
             vect.emplace_back(tmp);
         }
         sort(vect.begin(), vect.end());
-        bsearch(vect, accumulate(vect.begin(), vect.end(), 0));
+        cout << lsearch(vect, accumulate(vect.begin(), vect.end(), 0), k, vect.size() - 1) << endl;
+        vect.clear();
     }
 
     return 0;
