@@ -56,6 +56,11 @@ int location_num = 1000;
 std::vector<std::vector<bool> > location_matrix(location_num, std::vector<bool>(location_num, false));
 
 // trick to convert char to string
+
+
+// sum of vector
+#include <numeric>
+cout << accumulate(A.begin(), A.end(), 0);
 char c = 'a';
 string s = &c;
 
