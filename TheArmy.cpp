@@ -34,37 +34,35 @@ using namespace std;
 
 int main(){
     /*code goes here*/
-    int t, n, m, pos, prev, current;
+    ios::sync_with_stdio(false);
+    int t, n, m, current;
 
-    pos = 1; // this is current position
+    //pos = 1; // this is current position
     cin >> t;
     vi shout;
     while(t-- > 0){
         cin >> n >> m;
         cin >> current; //first selection
-        m -= 1; //
+        m--; //
         loop(i, 0, n){ // intial state ie n = 6, m = 1, 3  then army will shout 3 2 1 0 1 2
             shout.push_back(current >= i ? current - i : i - current);
         }
         while(m > 0){
-            loop(i, 0, n)
-                cout << shout [i] << " ";
-            cout << endl;
             cin >> current;
-            loop(i, 0, n){
-                cout << (current >= i ? current - i : i - current) << endl;
-                current  = current >= i ? current - i : i - current;
-                cout << current << endl;
-                if(current > shout[i]){
-                    shout[i] = current;
+            for(int i = 0; i < n; i++){
+                if(current > i and shout[i] < current - i){
+                    shout[i] = current - i;
+                }
+                else if (current < i and shout[i] < i - current){
+                    shout[i] = i - current;
                 }
             }
-
             m--;
         }
         loop(i, 0, n)
                 cout << shout [i] << " ";
         cout << endl;
+        shout.clear();
 
     }
     return 0;
