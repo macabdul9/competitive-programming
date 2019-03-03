@@ -1,7 +1,7 @@
 /*
  * @author    : macab (macab@debian)
- * @file      : ChefandNumberGame
- * @created   : Saturday Mar 02, 2019 14:48:46 IST
+ * @file      : ChefandaBeautifulDigit
+ * @created   : Sunday Mar 03, 2019 09:25:59 IST
 */
 #include<bits/stdc++.h>
 #define endl 		         "\n"
@@ -30,28 +30,43 @@
 #define umsi                  unordered_map<string, int>
 typedef long long int ll;
 typedef unsigned int uint;
+typedef unsigned long long int ull;
 using namespace std;
-/*
- * source : https://www.codechef.com/MARCH19B/problems/CHNUM
- * */
+
+/*https://www.codechef.com/MARCH19B/problems/CHDIGER*/
+
+ull digit(ull num, int d){
+    multiset<int> mset;
+    int tmp;
+    // retireiving digits of num storing in a set
+    while(num > 0){
+        tmp = num % 10;
+        if(tmp > d)//replace the digit with d
+                tmp = d;
+        mset.insert(tmp);
+        num /= 10;
+    }
+    /*
+    for(auto x : mset){
+        cout << x << " ";
+    }
+    */
+    ull result = 0;
+
+    //constructing the  number
+    for(auto x : mset){
+        result *= 10;
+        result += x;
+    }
+    return result;
+}
 int main(){
     /*code goes here*/
-    int t, n, max_size, min_size;
-    ll ai;
-    vector<ll> score;
+    ull t, n, d;
     cin >> t;
-    while(t--){
-            cin >> n;
-            max_size = min_size = 0;
-            loop(i, 0, n){
-                cin >> ai;
-                if(ai > 0) ++max_size;
-                if(ai < 0) ++min_size;
-            }
-            if(!min_size) min_size = max_size;
-            if(!max_size) max_size = min_size;
-            cout << max_size << " " << min_size << endl;
-
+    while(t-- > 0){
+            cin >> n >> d;
+            cout << digit(n, d) << endl;
     }
     return 0;
 }
