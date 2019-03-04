@@ -55,6 +55,28 @@ cout << fixed << elapsed.count() << endl;
 int location_num = 1000;
 std::vector<std::vector<bool> > location_matrix(location_num, std::vector<bool>(location_num, false));
 
+
+
+// 2d Vector
+    vector<vector<int>> li;
+    vector<int> phi;
+    phi.push_back(1);
+    phi.push_back(3);
+    vector<int> first;
+    first.push_back(2);
+    first.push_back(4);
+    first.push_back(6);
+    li.push_back(phi);
+    li.push_back(first);
+    for(int i = 0; i < li.size(); i ++){
+        for(int j = 0 ; j < li[i].size(); j++){
+            cout << li[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+
+
 // trick to convert char to string
 
 
