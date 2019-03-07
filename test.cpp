@@ -1,35 +1,16 @@
-/**
- * @author      : macab (macab@debian)
- * @file        : test
- * @created     : Wednesday Feb 06, 2019 00:40:59 IST
- */
-
-
-#include<bits/stdc++.h>
-#define endl 		         "\n"
-#define ll                    long long int
-#define loop(i,a,b)           for(int i=(int)a;i<(int)b;++i)
-#define rloop(i,a,b)          for(int i=(int)a;i<=(int)b;++i)
-#define loopl(i,a,b)          for(ll i=(ll)a;i<(ll)b;++i)
-#define loopr(i,a,b)          for(int i=(int)a;i>=(int)b;--i)
-#define clr(x)                x.clear()
-#define MOD                   1000000007
-#define MAX                   1e9
-#define MIN                   -1e9
-#define pll                   pair<ll,ll>
-#define pii                   pair<int,int>
-#define all(p)                p.begin(),p.end()
-#define max(x,y)              (x>y)?x:y
-#define min(x,y)              (x<y)?x:y
+#include<iostream>
+#include "fastio.h"
 
 using namespace std;
 
 int main(){
-    //int a, b;
-    //a =10;
-    //b= 3;
-    //cout << pow(float(a), 1.0/float(b)) << endl << pow(10.0, 1.0/3.0);
-	cout << pow((float)12, 1.0/(float)2)<< endl << (int)pow((float)12, 1.0/(float)2);
-    return 0;
-}
+    int a;
+    long long b;
+    fastscan(a);
+    fastscan(b);
 
+    std::cout << "fast integer input = " << a <<"\nfast long long input = " << b << endl;
+
+    return 0;
+
+}
