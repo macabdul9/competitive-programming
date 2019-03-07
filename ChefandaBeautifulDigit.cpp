@@ -34,7 +34,7 @@ typedef unsigned long long int ull;
 using namespace std;
 
 /*https://www.codechef.com/MARCH19B/problems/CHDIGER*/
-
+/*
 ull digit(ull num, int d){
     multiset<int> mset;
     int tmp;
@@ -46,11 +46,11 @@ ull digit(ull num, int d){
         mset.insert(tmp);
         num /= 10;
     }
-    /*
+
     for(auto x : mset){
         cout << x << " ";
     }
-    */
+
     ull result = 0;
 
     //constructing the  number
@@ -60,14 +60,78 @@ ull digit(ull num, int d){
     }
     return result;
 }
+*/
+
+
+vector<int> mindigit(string digit){
+    vector<int> mm(2);
+    mm[0] = 0;
+    mm[1] = 0;
+    for(int i = 1; i < digit.length(); i++){
+        if( digit[i] < digit[mm[0]])
+            mm[0] = i;
+        else if(digit[i] > digit[mm[1]])
+            mm[1] = i;
+    }
+    return mm;
+}
+
+ull mynum(ull n, int d){
+    string digit =  to_string(n); // convert the number into string
+    int length = digit.length(); // length of the digit string
+    string ans;
+    vector<int> mm;
+    while(digit.length() > 0){
+        //cout << digit << endl; //for debuggin
+        //cout << "ans length = " << ans.length() << " digit length = " << digit.length() << endl;
+        mm = mindigit(digit);
+        //cout << digit[mm[0]] << "  " << digit[mm[1]] << endl; // for debugging
+
+        if(digit[mm[0]] == digit[mm[1]]){ // min digit and max digit is same there will be two scenerios 1. digit is <= d 2. digit >= d
+                if(int(digit[mm[0]] - '0') <= d){
+                    ans.append(digit);
+                    break;
+                }else{
+                    while(ans.length() < length ){
+                        ans.append(to_string(d));
+                    }
+                    return stoll(ans);
+                }
+        }else{
+            if(int(digit[mm[0]] - '0') < d)
+                ans.push_back(digit[mm[0]]);
+            else
+                ans.append(to_string(d));
+
+            digit = digit.substr(mm[0] + 1, length);
+        }
+
+    }
+
+    while(ans.length() < length ){
+        ans.append(to_string(d));
+    }
+
+    return stoll(ans);
+}
+
+
+
+
 int main(){
     /*code goes here*/
-    ull t, n, d;
+    int t, d;
+    ull n;
+    //vector<int> mm =  mindigit("30754319");
+    //cout << mm[0] << " " << mm[1] << endl;
+
     cin >> t;
     while(t-- > 0){
             cin >> n >> d;
-            cout << digit(n, d) << endl;
+            ull ans =  mynum(n, d);
+            cout << ans << endl;
     }
+
     return 0;
 }
 

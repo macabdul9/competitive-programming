@@ -1,10 +1,11 @@
 /*
  * @author    : macab (macab@debian)
- * @file      : PowerSet
- * @created   : Monday Mar 04, 2019 12:58:14 IST
+ * @file      : ChefgotRecipes
+ * @created   : Wednesday Mar 06, 2019 12:05:30 IST
 */
 #include<bits/stdc++.h>
 #define endl 		         "\n"
+#define merge(a, b)           a##b 
 #define loop(i,a,b)           for(int i=(int)a;i<(int)b;++i)
 #define rloop(i,a,b)          for(int i=(int)a;i<=(int)b;++i)
 #define loopl(i,a,b)          for(ll i=(ll)a;i<(ll)b;++i)
@@ -34,61 +35,27 @@ typedef long long int ll;
 typedef unsigned int uint;
 typedef unsigned long long int ull;
 using namespace std;
-/*
- * source : https://www.codechef.com/problems/CDPWST */
-void sumofsubset(vi &set, int itr, vector<ull> &result){
-        if(itr >= set.size()) return;
 
-        int old_size = result.size();
-        for(int i = 0; i <old_size; i++){
-            int b = result[i] + set[itr];
-            result.push_back(b);
-        }
-        sumofsubset(set, itr + 1, result);
-
+string removeduplicate(string s){
+    set<char> ls;
+    loop(i, 0, s.length())
+        ls.insert(s[i]);
+    string ans;
+    for(auto x: ls)
+            ans += x;
+    ls.clear();
+    return ans;
 }
-ull sum(int n){
-    ull subsum = 0;
-    ull length = 1;
-    for(int i = 1; i <= n; i++){
-        subsum = 2*subsum + length*i;
-        length *= 2;
-    }
-
-    return subsum;
-}
-
 
 int main(){
-    //ios::sync_with_stdio(0);
-    //cin.tie(NULL);
+    ios::sync_with_stdio(0);
+    cin.tie(NULL);
 
     /*code goes here*/
-    int t, n, tmp;
-    vector<int> set;
-    vector<ull> result ;
+    string a = "aaooaoaooa";
+    string b = "aeioooeeiiaiei";
+    cout << removeduplicate(a + b) << endl;
 
-    cin >> t;
-    while(t-- > 0){
-        cin >> n;
-        //result.push_back(0);
-        /*
-        for(int i = 1 ; i <= n; i++){
-            set.push_back(i);
-        }*/
-        /*
-        sumofsubset(set, 0, result);
-        for(auto x : result)
-                cout << x << " ";
-        cout << endl;
-        */
-        //cout << accumulate(result.begin(), result.end(), 0) << endl;
-        //result.clear();
-        //set.clear();
-        //
-        cout << sum(n) << endl;
-
-    }
     return 0;
 }
 
