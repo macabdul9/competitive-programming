@@ -47,7 +47,7 @@ string removeduplicate(string s){
     return ans;
 }
 
-ull countgoodmeal(vector<string> &dishes){
+ull countgoodmeala(vector<string> &dishes){
     if(dishes.size() < 2) return 0;
 
     ull count = 0;
@@ -87,9 +87,81 @@ ull countgoodmeal(vector<string> &dishes){
 
 }
 
+unsigned int not_present(unsigned int n)
+{
+   // Find number of bits in the given integer
+   int number_of_bits = floor(log2(n))+1;
+
+   // XOR the given integer with poe(2,
+   // number_of_bits-1 and print the result
+   return ((1 << number_of_bits) - 1) ^ n;
+}
+
+int countgoodmeal(vector<string> &dishes){
+    if(dishes.size() < 2) return 0;
+
+    string vowels = "aeiou";  // LSB --> a, MSB -->B
+
+    vector<vector<int>> compiled_dishes;
+
+    int present, not_present;
+    vector<int> sample;
+    for(int i = 0 ; i < 5; i++)
+            compiled_dishes.push_back(sample);
+
+    ull count = 0;
+    const int goodmeal = 31;
+
+    for(int i = 0; i < dishes.size(); i++){
+        // if a dish (with no duplicate chars) has length 5 it means it has all five vowels hence it can make good with any other dish
+        string current_dish = dishes[i];
+        // if(current_dish.length() == 5){
+        //     count = count + dishes.size() - 1;
+        //     continue;
+        // }
+        present = not_present = 0;
+
+        for(int k = 0; k < vowels.length(); k++){
+            if(current_dish.find(vowels[k]) != string::npos){
+                present += pow(2, k);
+            }
+        }
+        //not_present = 31 - present;
+        //cout << present << " " << not_present << endl;
+        int orop, valid_length;
+
+        for(int l = 0; l < 5; l++){
+
+        	valid_length = l + 1 + current_dish.length();
+
+            if(valid_length >= 5){
+                for(int m = 0; m < compiled_dishes[l].size(); m++){
+                	orop =  present | compiled_dishes[l][m];
+                    //cout << present << " OR " << compiled_dishes[i][j] << " = " << orop << endl;
+                    if(orop == goodmeal){
+                        count++;
+                    }
+                }
+            }
+        }
+
+        compiled_dishes[current_dish.length() - 1].push_back(present);
+
+        // for(int i = 0; i < 4; i++){
+        //     for(int j = 0; j < compiled_dishes[i].size(); j++){
+        //         cout << compiled_dishes[i][j] << " ";
+        //     }
+        //     cout << endl;
+        // }
+
+    }
+    compiled_dishes.clear();
+    return count;
+
+}
+
 int main(){
     ios::sync_with_stdio(0);
-
     int t,n;
     string str;
     vector<string> dishes;
@@ -100,7 +172,7 @@ int main(){
             cin >> str;
             dishes.push_back(removeduplicate(str));
         }
-        cout << countgoodmeal(dishes) << endl;
+        cout << countgoodmeala(dishes) << " " << countgoodmeal(dishes) << endl;
         dishes.clear();
     }
 
