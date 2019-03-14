@@ -1,7 +1,7 @@
 /*
-	If there exist an a such a divides n then will exist a b
+	If there exist an a such that a divides n then will exist a b
 	that divides such that b = n / a;
-	bxa = n;
+	b x a = n;
 
 */
 #include <bits/stdc++.h>
