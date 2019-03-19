@@ -43,6 +43,7 @@ void bigfactorial(int number){
 
     int j, carry, mul;
 
+    
     for(int i = 2; i <= number; i++){
         j = 0,  carry = 0, mul = 0;
         while(value[j] != -1){
@@ -51,6 +52,7 @@ void bigfactorial(int number){
             carry = mul/10;
             j++;
         }
+        // left out carry !
         while(carry > 0){
             value[j] = carry%10;
             carry /= 10;
