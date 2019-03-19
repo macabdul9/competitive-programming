@@ -11,8 +11,8 @@ class TestBigInteger{
 
     public static void main(String[] args){
 
-        BigInteger bi = BigInteger.valueOf(12);
-
-        System.out.println(bi.nextProbablePrime());
+        BigInteger b1 = BigInteger.valueOf(12);
+        BigInteger b2 = new BigInteger("123456676543213456786543212345678754321234567865432345678765432");
+        System.out.println(b1.nextProbablePrime() + " " + b2);
     }
 }
