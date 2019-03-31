@@ -52,11 +52,61 @@ vector<bool> sieve(){
     return isPrime;
 }
 
+vector<bool> getprimeinrange(int  left, int right, vector<bool> primes){
+    if(left > right)
+            swap(left, right);
+
+    int length, sizeofprimes;
+    length = right - left;
+    sizeofprimes = primes.size();
+
+    vector<bool> isPrime(length, true);
+
+    rloop(p, 2, sqrt(right)){
+            if(primes[p]){
+                int start ;
+                if (left % p == 0)
+                        start = left;
+                else
+                        start = (p*(left/p)) + p;
+
+                for(int i = start ; i <= right ; i += p){
+                    //cout << i << " ";
+                    isPrime[i - left] = false;
+                }
+                // if start is prime !
+                if(start == p)
+                        isPrime[start - left] = true;
+            }
+    }
+    return isPrime;
+
+}
+
 int main(){
 	ios::sync_with_stdio(0);
 
+    vector<bool> primes = sieve();
+    int sizeofprimes = primes.size();
 
+    int t , left , right;
+    cin >> t;
+    while(t--){
+        cin >> left >> right;
+        vector<bool> isPrime = getprimeinrange(left, right, primes);
+        /*
+        cout << isPrime.size() << endl;
+        for(int i = 0 ; i < isPrime.size(); i++)
+                cout << boolalpha << isPrime[i] << " ";
+        cout << endl;
+        */
+        for(int i = 0; i < right - left ; i++){
+            if(isPrime[i] and (i + left) <= right)
+                    cout << i + left << " ";
+        }
 
+        isPrime.clear();
+    }
 
 	return 0;
 }
