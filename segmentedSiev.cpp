@@ -57,7 +57,7 @@ vector<bool> getprimeinrange(int  left, int right, vector<bool> primes){
             swap(left, right);
 
     int length, sizeofprimes;
-    length = right - left;
+    length = right - left + 1;
     sizeofprimes = primes.size();
 
     vector<bool> isPrime(length, true);
@@ -100,7 +100,7 @@ int main(){
                 cout << boolalpha << isPrime[i] << " ";
         cout << endl;
         */
-        for(int i = 0; i < right - left ; i++){
+        for(int i = 0; i < right - left + 1 ; i++){
             if(isPrime[i] and (i + left) <= right)
                     cout << i + left << " ";
         }
