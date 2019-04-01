@@ -35,21 +35,28 @@ typedef long long int ll;
 typedef unsigned int uint;
 typedef unsigned long long int ull;
 using namespace std;
-int powerinlog(int n, int power){
-        if(n == 1)
-                return 1;
-        if(n == 2 ){
-                int result = n << (power - 1);
-                return result;
-        }
-        return 2 << (power - 1 ) + 2*2*(n - 2) + powerinlog(n - 2 , power);
+
+int power(int x, unsigned int y){
+
+    int res = 1; // Initialize result
+
+    while (y > 0) {
+        // If y is odd, multiply x with result
+        if (y & 1)
+            res = res * x;
+
+        // n must be even now
+        y = y >> 1; // y = y/2
+        x = x * x; // Change x to x^2
+    }
+    return res;
 }
 
 
 int main(){
 	ios::sync_with_stdio(0);
 
-    cout << powerinlog(3, 2);
+    cout << power(6, 3);
 
 	return 0;
 }

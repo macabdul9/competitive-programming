@@ -1,7 +1,7 @@
 /*
  * @author    : macab (macab@debian)
- * @file      : rodcutting
- * @created   : Friday Mar 29, 2019 23:46:59 IST
+ * @file      : MonksChoiceofNumbers
+ * @created   : Tuesday Apr 02, 2019 02:43:50 IST
 */
 #include<bits/stdc++.h>
 #define endl                  "\n"
@@ -35,56 +35,48 @@ typedef long long int ll;
 typedef unsigned int uint;
 typedef unsigned long long int ull;
 using namespace std;
+
 /*
- * cut the rod to get maximum revenue
- * */
+ * source : https://www.hackerearth.com/practice/basic-programming/bit-manipulation/basics-of-bit-manipulation/practice-problems/algorithm/monks-choice-of-numbers-1
+ */
+int countsetbits(int n){
+    if(!n) return 0;
+    return 1 + countsetbits(n & (n - 1));
+}
 
-
-int getmaxrevn(vector<int> peice_length, vector<int> peice_price, int rod_length){
-
-    if(rod_length == 0 or rod_length < peice_length[0]) // assuming that possible cuttings are in sorted order !
-            return 0;
-
-    int max_revn = MIN;
-
-    for(int i = 0 ; i < peice_length.size(); i++){
-        int revn = 0;
-        // if current length of rod is >= curren length of the peice then it could be a valid cut !
-        if(peice_length[i] <= rod_length)
-            revn = peice_price[i] + getmaxrevn(peice_length, peice_price, rod_length - peice_length[i]);
-        if(revn > max_revn)
-                max_revn = revn;
-
+int maxcake(vector<int> &numbers, int n, int k){
+    loop(i, 0, n){
+        numbers[i] = countsetbits(numbers[i]);
     }
+    sort(numbers.begin(), numbers.end(), greater<int>());
 
-    return max_revn;
+    int totoal = 0;
+    for(int i = 0; i < k; i++){
+            totoal += numbers[i];
+    }
+    return totoal;
 }
 
 
 int main(){
 	ios::sync_with_stdio(0);
-    int t, cuts, rod_length, tmp;
+
+    int t, n, k, tmp;
     cin >> t;
     while(t--){
-        cin >> cuts;
-
-        vector<int> peice_length(cuts);
-        vector<int> peice_price(cuts);
-
-        for(int i = 0; i < cuts; i++){
+        cin >> n >> k;
+        vector<int> numbers(n);
+        loop(i, 0, n){
             cin >> tmp;
-            peice_length[i] = tmp;
+            numbers[i] = tmp;
         }
-        for(int i = 0 ; i < cuts; i++){
-            cin >> tmp;
-            peice_price[i] = tmp;
-        }
-        cin >> rod_length;
 
-        cout << getmaxrevn(peice_length, peice_price, rod_length) << endl;
-        peice_length.clear();
-        peice_price.clear();
+        cout << maxcake(numbers, n, k) << endl;
+        numbers.clear();
+
     }
+
+
 
 	return 0;
 }

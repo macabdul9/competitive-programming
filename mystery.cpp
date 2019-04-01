@@ -1,7 +1,7 @@
 /*
  * @author    : macab (macab@debian)
- * @file      : rodcutting
- * @created   : Friday Mar 29, 2019 23:46:59 IST
+ * @file      : mystery
+ * @created   : Tuesday Apr 02, 2019 03:26:45 IST
 */
 #include<bits/stdc++.h>
 #define endl                  "\n"
@@ -36,56 +36,24 @@ typedef unsigned int uint;
 typedef unsigned long long int ull;
 using namespace std;
 /*
- * cut the rod to get maximum revenue
- * */
-
-
-int getmaxrevn(vector<int> peice_length, vector<int> peice_price, int rod_length){
-
-    if(rod_length == 0 or rod_length < peice_length[0]) // assuming that possible cuttings are in sorted order !
-            return 0;
-
-    int max_revn = MIN;
-
-    for(int i = 0 ; i < peice_length.size(); i++){
-        int revn = 0;
-        // if current length of rod is >= curren length of the peice then it could be a valid cut !
-        if(peice_length[i] <= rod_length)
-            revn = peice_price[i] + getmaxrevn(peice_length, peice_price, rod_length - peice_length[i]);
-        if(revn > max_revn)
-                max_revn = revn;
-
-    }
-
-    return max_revn;
-}
+ * source : https://www.hackerearth.com/practice/basic-programming/bit-manipulation/basics-of-bit-manipulation/practice-problems/algorithm/mystery-30/
+ */
 
 
 int main(){
-	ios::sync_with_stdio(0);
-    int t, cuts, rod_length, tmp;
-    cin >> t;
-    while(t--){
-        cin >> cuts;
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
 
-        vector<int> peice_length(cuts);
-        vector<int> peice_price(cuts);
-
-        for(int i = 0; i < cuts; i++){
-            cin >> tmp;
-            peice_length[i] = tmp;
+    ull n, count;
+    while(cin >> n){
+        count = 0;
+        while(n){
+            n &= (n - 1);
+            count ++;
         }
-        for(int i = 0 ; i < cuts; i++){
-            cin >> tmp;
-            peice_price[i] = tmp;
-        }
-        cin >> rod_length;
+        printf("%lld\n", count);
 
-        cout << getmaxrevn(peice_length, peice_price, rod_length) << endl;
-        peice_length.clear();
-        peice_price.clear();
     }
-
-	return 0;
 }
+
 
