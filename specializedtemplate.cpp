@@ -1,7 +1,7 @@
 /*
  * @author    : macab (macab@debian)
- * @file      : FriendorGirlfriend
- * @created   : Monday Apr 08, 2019 19:30:23 IST
+ * @file      : specializedtemplate
+ * @created   : Thursday Apr 11, 2019 13:13:39 IST
 */
 #include<bits/stdc++.h>
 #define endl                  "\n"
@@ -36,39 +36,24 @@ typedef unsigned int uint;
 typedef unsigned long long int ull;
 using namespace std;
 
-// source : https://www.codechef.com/APRIL19B/problems/STRCH
-
-ll noofsubstring(string str, char ch, ll len){
-        ll count = 0;
-        ll lastindex = -1;
-
-        for(ll currentindex = 0; currentindex < len; currentindex ++){
-            if(str[currentindex] == ch){
-                count += (currentindex + 1);
-                lastindex = currentindex;
-            }else{
-                count += (lastindex + 1);
-            }
-        }
-
-        return count;
-
+// template specilization !
+template<class T>
+void fun(T a){
+    cout << " general template function" << endl;
 }
 
-int main(){
-    ios::sync_with_stdio(0);
+template<>
+void fun<int>(int a){
+    cout << "specilized template function !" << endl;
+}
 
-    ll t;
-    cin >> t;
-    ll n;
-    string str;
-    char ch;
-    while(t--){
-        cin >> n;
-        cin >> str;
-	cin >> ch;
-        cout << noofsubstring(str, ch, n) << endl;
-    }
+
+int main(){
+	ios::sync_with_stdio(0);
+
+    fun(10);
+    fun('f');
+    fun("fun");
 
 	return 0;
 }
