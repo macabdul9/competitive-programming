@@ -104,6 +104,7 @@ int main(){
             if(isPrime[i] and (i + left) <= right)
                     cout << i + left << " ";
         }
+	cout << endl;
 
         isPrime.clear();
     }
